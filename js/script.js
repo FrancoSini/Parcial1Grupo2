@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // referencias a los elementos del DOM
     const inputTarea = document.querySelector('input[type="text"]');//input para ingresar la tarea tipo texto ya que en el html no se define como text
@@ -19,16 +20,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let completadas = 0;
         tareas.forEach((tarea, index) => {
             const li = document.createElement('li');
-
-            //creacion del checkbox para marcar la tarea como completada o pendiente
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.checked = tarea.completada;
-            //creacion del evento change para actualizar el estado de la tarea en el arreglo de tareas y actualizar la lista y los contadores cada vez que se marca o desmarca el checkbox
-            checkbox.addEventListener('change', () => {
-                tareas[index].completada = checkbox.checked;
-                agregarTarea();
+            const btnCompletar=document.createElement("button");
+            btnCompletar.textContent = "✔";
+            btnCompletar.addEventListener('click', () => {
+                tareas[index].completada = !tareas[index].completada; //cambia el estado de la tarea a completada o pendiente
+                agregarTarea(); //actualiza la lista y los contadores cada vez que se marca una tarea como completada o pendiente
             }); 
+            const btnEliminar = document.createElement("button");
+                btnEliminar.textContent = "✖";
+                btnEliminar.addEventListener("click", () => {
+                tareas.splice(index, 1); //elimina la tarea del arreglo de tareas
+                agregarTarea();
+            });
             
             const spanText = document.createElement('span');
             spanText.textContent = tarea.texto;
@@ -36,7 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 spanText.style.textDecoration = 'line-through';
                 completadas++;
             }
-            li.appendChild(checkbox);
+
+            
+            li.appendChild(btnCompletar);
+            li.appendChild(btnEliminar);
             li.appendChild(spanText);
             listaTareas.appendChild(li); 
         });
