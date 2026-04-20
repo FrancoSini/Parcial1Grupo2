@@ -1,90 +1,105 @@
-
-document.addEventListener('DOMContentLoaded', () => {
-    // referencias a los elementos del DOM
-    const inputTarea = document.querySelector('input[type="text"]');//input para ingresar la tarea tipo texto ya que en el html no se define como text
-    const formulario = document.querySelector('form');// aplica evento submit al formulario para evitar recargar la pagina y agregar la tarea a la lista
-    const listaTareas = document.querySelector('.lista-tareas');// contenedor de la lista de tareas para agregar las tareas dinamicamente
-    const btnLimpiarUltima = document.querySelector('.btn-limpiar-ultima');// boton para eliminar la ultima tarea agregada a la lista
-    const btnLimpiarCompletadas = document.querySelector('.btn-limpiar-completadas');// boton para eliminar todas las tareas que han sido marcadas como completadas
-    const btnLimpiarTodas = document.querySelector('.btn-limpiar-todas');// boton para eliminar todas las tareas de la lista sin importar su estado
-    const contadorTotal = document.querySelector('.contador.total');//  contador para mostrar el total de tareas en la lista, se actualiza cada vez que se agrega o elimina una tarea
-    const contadorPendientes = document.querySelector('.contador.pendientes');//    contador para mostrar el numero de tareas pendientes, se actualiza cada vez que se marca una tarea como completada o se elimina una tarea pendiente
-    const contadorCompletadas = document.querySelector('.contador.completadas');// contador para mostrar el numero de tareas completadas, se actualiza cada vez que se marca una tarea como completada o se elimina una tarea completada
+document.addEventListener("DOMContentLoaded", () => {
 
 
-    // funcion para agregar tareas a la lista y actualizar los contadores
+    const form = document.querySelector("form");
+    const input = document.querySelector("#input-tarea");
+    const lista = document.querySelector(".lista-tareas");
+
+    const total = document.querySelector("#total");
+    const pendientes = document.querySelector("#pendientes");
+    const completadas = document.querySelector("#completadas");
+
+    const btnUltima = document.querySelector(".btn-limpiar-ultima");
+    const btnCompletadas = document.querySelector(".btn-limpiar-completadas");
+    const btnTodas = document.querySelector(".btn-limpiar-todas");
+
+    // Estado de la app (creamos tareas y guardamos en array)
     let tareas = [];
-    function agregarTarea() {
-        listaTareas.innerHTML = '';
 
-        let completadas = 0;
-        tareas.forEach((tarea, index) => {
-            const li = document.createElement('li');
-            const btnCompletar=document.createElement("button");
-            btnCompletar.textContent = "✔";
-            btnCompletar.addEventListener('click', () => {
-                tareas[index].completada = !tareas[index].completada; //cambia el estado de la tarea a completada o pendiente
-                agregarTarea(); //actualiza la lista y los contadores cada vez que se marca una tarea como completada o pendiente
-            }); 
-            const btnEliminar = document.createElement("button");
-                btnEliminar.textContent = "✖";
-                btnEliminar.addEventListener("click", () => {
-                tareas.splice(index, 1); //elimina la tarea del arreglo de tareas
-                agregarTarea();
-            });
-            
-            const spanText = document.createElement('span');
-            spanText.textContent = tarea.texto;
-            if (tarea.completada) {
-                spanText.style.textDecoration = 'line-through';
-                completadas++;
-            }
+    // AGREGAR TAREA
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-            
-            li.appendChild(btnCompletar);
-            li.appendChild(btnEliminar);
-            li.appendChild(spanText);
-            listaTareas.appendChild(li); 
+        const texto = input.value.trim();
+        if (texto === "") return;
+
+        tareas.push({
+            texto: texto,
+            completada: false
         });
 
-        //actualizamos los contadores 
-        const total = tareas.length;
-        const pendientes = total - completadas;
-        contadorTotal.textContent = `Total: ${total}`;
-        contadorPendientes.textContent = `Pendientes: ${pendientes}`;
-        contadorCompletadas.textContent = `Completadas: ${completadas}`;
+        input.value = "";
+        renderizar();
+    });
+
+    // RENDERIZAR Borra la lista actual y vuelve a crear todas las tareas desde el array
+    function renderizar() {
+        lista.innerHTML = "";
+
+        tareas.forEach((tarea, index) => {
+
+            const li = document.createElement("li");
+
+            const span = document.createElement("span");
+            span.textContent = tarea.texto;
+
+            if (tarea.completada) {
+                span.style.textDecoration = "line-through";
+            }
+
+            // BOTÓN COMPLETAR
+            const btnCompletar = document.createElement("button");
+            btnCompletar.textContent = "✔";
+
+            btnCompletar.addEventListener("click", () => {
+                tareas[index].completada = !tareas[index].completada;
+                renderizar();
+            });
+
+            // BOTÓN ELIMINAR
+            const btnEliminar = document.createElement("button");
+            btnEliminar.textContent = "✖";
+
+            btnEliminar.addEventListener("click", () => {
+                tareas.splice(index, 1);
+                renderizar();
+            });
+
+            li.appendChild(span);
+            li.appendChild(btnCompletar);
+            li.appendChild(btnEliminar);
+
+            lista.appendChild(li);
+        });
+
+        actualizarContadores();
     }
 
-    // eventos de los botones
-    // evento submit para agregar una nueva tarea a la lista
-    formulario.addEventListener('submit', (e) => {
-        e.preventDefault();//se agrega para evitar que el formulario recargue la pagina al enviar la tarea
-        const texto = inputTarea.value.trim();
-        if (texto !== '') {
-            tareas.push({ texto: texto, completada: false });
-            inputTarea.value = ''; 
-            agregarTarea(); 
-        }
-    });
-    // evento click para eliminar la ultima tarea agregada a la lista
-    btnLimpiarUltima.addEventListener('click', () => {
-        if (tareas.length > 0) {
-            tareas.pop(); 
-            agregarTarea(); 
-        }
+    // CONTADORES
+    function actualizarContadores() {
+        const totalTareas = tareas.length;
+        const completadasTareas = tareas.filter(t => t.completada).length;
+        const pendientesTareas = totalTareas - completadasTareas;
 
-    });
-    //evento click para eliminar todas las tareas que han sido marcadas como completadas
-    btnLimpiarCompletadas.addEventListener('click', () => {
-        tareas = tareas.filter(tarea => tarea.completada === false);//filtro el arreglo para eliminar las tareas completadas y mantener solo las pendientes
-        agregarTarea();
-    });
-    //evento click para eliminar todas las tareas
-    btnLimpiarTodas.addEventListener('click', () => {
-        tareas = []; 
-        agregarTarea();
+        total.textContent = `Total: ${totalTareas}`;
+        completadas.textContent = `Completadas: ${completadasTareas}`;
+        pendientes.textContent = `Pendientes: ${pendientesTareas}`;
+    }
+
+    // BOTONES FOOTER
+
+    btnUltima.addEventListener("click", () => {
+        tareas.pop();
+        renderizar();
     });
 
-    
-    agregarTarea();
-});
+    btnCompletadas.addEventListener("click", () => {
+        tareas = tareas.filter(t => !t.completada);
+        renderizar();
+    });
+
+    btnTodas.addEventListener("click", () => {
+        tareas = [];
+        renderizar();
+    });
+
