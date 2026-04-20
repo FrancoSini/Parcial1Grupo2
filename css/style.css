@@ -7,4 +7,18 @@
 
 
 
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f4f7fb; 
+  color: #333;
+  line-height: 1.6;
+}
+
+
+h1, h2, h3 {
+  color: #0056b3; /* azul principal */
+  text-align: center;
+  margin-bottom: 15px;
+}
+
 
