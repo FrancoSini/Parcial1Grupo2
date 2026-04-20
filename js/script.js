@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizar();
     });
 
-    // RENDERIZAR (pinta todo el HTML)
+    // RENDERIZAR (Borra la lista actual y vuelve a crear todas las tareas desde el array)
     function renderizar() {
         lista.innerHTML = "";
 
