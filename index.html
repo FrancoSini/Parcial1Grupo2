@@ -1,15 +1,43 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi página</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+<body>
+    <div class="container">
+      
+        <header class="header">
+            <h1>Mis Tareas</h1>
+            <div class="contadores">
+                <span class="contador total">Total: 0</span>
+                <span class="contador pendientes">Pendientes: 0</span>
+                <span class="contador completadas">Completadas: 0</span>
+            </div>
+        </header>
 
+      
+        <section class="formulario">
+            <form>
+                <input type="text" placeholder="Escribe una nueva tarea..." required>
+                <button class="btn-agregar">Agregar</button>
+            </form>
+        </section>
 
-<footer>
-  <p>© 2026 Mis Tareas - Grupo 2</p>
-  <p>Organiza tu día, alcanza tus metas.</p>
-</footer>
+        <section class="lista">
+            <ul class="lista-tareas">
+            </ul>
+        </section>
+
+        <footer>
+            <button class="btn-limpiar-ultima">Limpiar ultima</button>
+            <button class="btn-limpiar-completadas">Limpiar completadas</button>            
+            <button class="btn-limpiar-todas">Limpiar todas</button>
+        </footer>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
