@@ -1,1 +1,10 @@
-/* Creo footer.css*/
+/* Creo footer.css*/  
+
+
+footer {
+    background-color: #2956e7;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
