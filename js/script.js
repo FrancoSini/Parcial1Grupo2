@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // eventos de los botones
     // evento submit para agregar una nueva tarea a la lista
     formulario.addEventListener('submit', (e) => {
-        e.preventDefault();
+        e.preventDefault();//se agrega para evitar que el formulario recargue la pagina al enviar la tarea
         const texto = inputTarea.value.trim();
         if (texto !== '') {
             tareas.push({ texto: texto, completada: false });
