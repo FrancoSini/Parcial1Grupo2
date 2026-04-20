@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-
     const form = document.querySelector("form");
     const input = document.querySelector("#input-tarea");
     const lista = document.querySelector(".lista-tareas");
@@ -13,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnCompletadas = document.querySelector(".btn-limpiar-completadas");
     const btnTodas = document.querySelector(".btn-limpiar-todas");
 
-    // Estado de la app (creamos tareas y guardamos en array)
+    // estado de la app
     let tareas = [];
 
     // AGREGAR TAREA
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizar();
     });
 
-    // RENDERIZAR Borra la lista actual y vuelve a crear todas las tareas desde el array
+    // RENDERIZAR (pinta todo el HTML)
     function renderizar() {
         lista.innerHTML = "";
 
@@ -103,3 +102,4 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizar();
     });
 
+});
