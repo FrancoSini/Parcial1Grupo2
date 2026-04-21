@@ -42,9 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const span = document.createElement("span");
             span.textContent = tarea.texto;
 
+
             if (tarea.completada) {
-                span.style.textDecoration = "line-through";
-            }
+                span.classList.add("completada");
+            } else {
+                span.classList.remove("completada");
+        }
 
             // BOTÓN COMPLETAR
             const btnCompletar = document.createElement("button");
