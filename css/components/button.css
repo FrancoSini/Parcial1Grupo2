@@ -74,16 +74,7 @@ button.btn-agregar:hover {
   font-size: 20px;
 }
 
-/*  botón eliminar */
-.lista-tareas li button:last-of-type {    /* selecciona el último botón de la lista (del renglon)*/
-  background: #dc3545;
-  color: #fff;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 0 4px 4px 0; 
-  cursor: pointer;
-  font-size: 20px;
-}
+
 
 
 
