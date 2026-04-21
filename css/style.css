@@ -8,10 +8,9 @@
 
 
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background-color: #f4f7fb; 
-  color: #333;
-  line-height: 1.6;
+  background: linear-gradient(135deg, #b3e5fc, #e0f7fa);
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 

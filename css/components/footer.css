@@ -1,10 +1,19 @@
 /* Creo footer.css*/  
 
-
 footer {
-    background-color: #2956e7;
+    background-color: #004080;
     color: #fff;
     padding: 20px;
     text-align: center;
+    width: 80%;  
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* sombra elegante */
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;        
+    border-radius: 20px;  
 }
 
