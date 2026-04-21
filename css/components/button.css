@@ -1,4 +1,3 @@
-/* Creo button.css*/
 
 /* Botón Agregar */
 button.btn-agregar {
@@ -16,55 +15,8 @@ button.btn-agregar:hover {
   background: #004080; 
 }
 
-
-/* Estilos para la lista de tareas */
-.lista-tareas li span {
-  font-size: 20px;
-}
-.lista-tareas li span {     /*para que el texto ocupe todo el renglon y los botones queden en la derecha */
-  flex: 1; 
-}
-.lista-tareas li span {
-  text-transform: uppercase;   /* pongo todas las tareas en mayúscula */
-  font-size: 18px;
-  font-weight: 600;
-  font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
-}
-
-
-.lista-tareas li span.completada  {
-  font-style: italic;   
-  color: #6c757d;       
-  opacity: 0.7;         
-  text-decoration: line-through; 
-  transition: all 0.3s ease;
-}
-
-
-
-/* Contenedor de cada tarea: texto a la izquierda, botones a la derecha */
-.lista-tareas li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-}
-.lista-tareas li {
-  display: flex;
-  justify-content: space-between; /* texto a la izquierda, botones juntos a la derecha */
-  align-items: center;
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-
-
-
-
-
-/*  botón completar */
-.lista-tareas li button:first-of-type {     /* selecciona el primer botón  de la lista (del renglon)*/
+/*  botón "✔" */
+.lista-tareas li button {     
   background: #28a745;
   color: #fff;
   border: none;
@@ -74,12 +26,7 @@ button.btn-agregar:hover {
   font-size: 20px;
 }
 
-
-
-
-
-/*estilos para los botones de limpiar la ultima, limpiar comopletadas y limpiar todo*/
-
+/* botones de limpiar ultima, limpiar completadas y limpiar todas*/
 
 button.btn-limpiar-ultima{
   background: #ffc107;
