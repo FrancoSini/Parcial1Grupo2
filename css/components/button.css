@@ -76,3 +76,66 @@ button.btn-agregar:hover {
   cursor: pointer;
   font-size: 20px;
 }
+
+
+
+/*estilos para los botones de limpiar la ultima, limpiar comopletadas y limpiar todo*/
+
+
+button.btn-limpiar-ultima{
+  background: #ffc107;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px; 
+}
+
+
+button.btn-limpiar-completadas {
+  background: #17a2b8;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px; 
+}
+
+
+button.btn-limpiar-todas {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
+button.btn-limpiar-todas:hover {
+  background: #c82333;
+}
+
+button.btn-limpiar-completadas:hover {
+  background: #138496;
+}
+
+button.btn-limpiar-ultima:hover {
+  background: #e0a800;
+}
+
+footer button {
+  border-radius: 30px;   
+  padding: 12px 24px;    
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; }
+
+footer button:hover {
+  transform: translateY(-2px);}
