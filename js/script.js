@@ -1,6 +1,5 @@
 
 //REFERENCIAS A ELEMENTOS DEL DOM
-const form = document.querySelector("form");
 const input = document.querySelector("#input-tarea");
 const btnAgregar = document.querySelector(".btn-agregar");
 const lista = document.querySelector(".lista-tareas");
