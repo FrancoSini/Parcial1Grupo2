@@ -44,7 +44,7 @@ function actualizarLista() {
             span.classList.add("completada");   // aplica los estilos del CSS
         } else {
             span.classList.remove("completada"); // por si se desmarca
-}
+        }
 
 
         const btnCompletar = crearBotonCompletar(index);
