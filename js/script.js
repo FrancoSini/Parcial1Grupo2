@@ -12,7 +12,7 @@ const btnUltima = document.querySelector(".btn-limpiar-ultima");
 const btnCompletadas = document.querySelector(".btn-limpiar-completadas");
 const btnTodas = document.querySelector(".btn-limpiar-todas");
 
-// CREACION DE LA LISTA TAREAS
+// CREACION DEL ARRAY PARA LA LISTA TAREAS
 let tareas = [];
 
 // FUNCIONES
@@ -57,7 +57,7 @@ function actualizarLista() {
 
     actualizarContadores();
 }
-//FUNCION PAR ACREAR EL BOTÓN "✔" Y SU RESPECTIVO EVENTO
+//FUNCION PARA CREAR EL BOTÓN "✔" Y SU RESPECTIVO EVENTO
 function crearBotonCompletar (index){
     const btnCompletar = document.createElement("button");
     btnCompletar.textContent = "✔";
