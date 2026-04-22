@@ -36,6 +36,7 @@ form {
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
 }
+
 .lista-tareas li span.completada  {
   font-style: italic;   
   color: #6c757d;       
