@@ -40,9 +40,13 @@ function actualizarLista() {
         const span = document.createElement("span");
         span.textContent = tarea.texto;
 
+        
         if (tarea.completada) {
-            span.style.textDecoration = "line-through";
-        }
+            span.classList.add("completada");   // aplica los estilos del CSS
+        } else {
+            span.classList.remove("completada"); // por si se desmarca
+}
+
 
         const btnCompletar = crearBotonCompletar(index);
 
