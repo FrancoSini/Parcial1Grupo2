@@ -1,5 +1,4 @@
-
-//REFERENCIAS A ELEMENTOS DEL DOM
+// REFERENCIAS A ELEMENTOS DEL DOM
 const input = document.querySelector("#input-tarea");
 const btnAgregar = document.querySelector(".btn-agregar");
 const lista = document.querySelector(".lista-tareas");
@@ -12,13 +11,14 @@ const btnUltima = document.querySelector(".btn-limpiar-ultima");
 const btnCompletadas = document.querySelector(".btn-limpiar-completadas");
 const btnTodas = document.querySelector(".btn-limpiar-todas");
 
-// CREACION DEL ARRAY PARA LA LISTA TAREAS
+// ARRAY DE TAREAS
 let tareas = [];
 
-// FUNCIONES
-//FUNCION PARA AGREGAR TAREA
-function agregarTarea () {
-     const texto = input.value.trim();
+// ---------------- FUNCIONES ----------------
+
+// AGREGAR TAREA
+function agregarTarea() {
+    const texto = input.value.trim();
     if (texto === "") return;
 
     tareas.push({
@@ -29,36 +29,40 @@ function agregarTarea () {
     input.value = "";
     actualizarLista();
 }
-//FUNCION PARA ACTUALIZAR LA LISTA (Borra la lista actual y vuelve a crear todas las tareas desde el array)
+
+// ACTUALIZAR LISTA
 function actualizarLista() {
     lista.innerHTML = "";
 
     tareas.forEach((tarea, index) => {
 
         const li = document.createElement("li");
+
         const span = document.createElement("span");
         span.textContent = tarea.texto;
 
-        
+        // ESTILO SI ESTÁ COMPLETADA
         if (tarea.completada) {
-            span.classList.add("completada");   // aplica los estilos del CSS
-        } else {
-            span.classList.remove("completada"); // por si se desmarca
+            span.classList.add("completada");
         }
 
-
+        // BOTONES
         const btnCompletar = crearBotonCompletar(index);
+        const btnEliminar = crearBotonEliminar(index);
 
+        // AGREGAR ELEMENTOS
         li.appendChild(span);
         li.appendChild(btnCompletar);
+        li.appendChild(btnEliminar);
 
         lista.appendChild(li);
     });
 
     actualizarContadores();
 }
-//FUNCION PARA CREAR EL BOTÓN "✔" Y SU RESPECTIVO EVENTO
-function crearBotonCompletar (index){
+
+// BOTÓN COMPLETAR ✔
+function crearBotonCompletar(index) {
     const btnCompletar = document.createElement("button");
     btnCompletar.textContent = "✔";
 
@@ -66,9 +70,24 @@ function crearBotonCompletar (index){
         tareas[index].completada = !tareas[index].completada;
         actualizarLista();
     });
+
     return btnCompletar;
 }
-//FUNCION PARA ACTUALIZAR CONTADORES
+
+// BOTÓN ELIMINAR ✖
+function crearBotonEliminar(index) {
+    const btnEliminar = document.createElement("button");
+    btnEliminar.textContent = "✖";
+
+    btnEliminar.addEventListener("click", () => {
+        tareas.splice(index, 1);
+        actualizarLista();
+    });
+
+    return btnEliminar;
+}
+
+// ACTUALIZAR CONTADORES
 function actualizarContadores() {
     const totalTareas = tareas.length;
     const completadasTareas = tareas.filter(t => t.completada).length;
@@ -79,29 +98,27 @@ function actualizarContadores() {
     pendientes.textContent = `Pendientes: ${pendientesTareas}`;
 }
 
-// EVENTOS
-//AGREGA TAREA CON CLICK EN EL BOTON "AGREGAR"
-btnAgregar.addEventListener("click", () => {
-    agregarTarea();
-});
-//AGREGA TAREA CON "ENTER"
+// ---------------- EVENTOS ----------------
+
+// BOTÓN AGREGAR
+btnAgregar.addEventListener("click", agregarTarea);
+
+// ENTER EN INPUT
 input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-        e.preventDefault(); 
-        agregarTarea();    
+        e.preventDefault();
+        agregarTarea();
     }
 });
-//ELIMINA LA ULTIMA TAREA CON CLICK EN EL BOTON "LIMPIAR ULTIMA"
-btnUltima.addEventListener("click", () => {
-    tareas.pop();
-    actualizarLista();
-});
-//ELIMINA TODAS LAS TAREAS COMPLETADAS CON CLICK EN EL BOTON "LIMPIAR COMPLETADAS"
+
+
+// LIMPIAR COMPLETADAS
 btnCompletadas.addEventListener("click", () => {
     tareas = tareas.filter(t => !t.completada);
     actualizarLista();
 });
-//ELIMINA TODAS LAS TAREAS CON CLICK EN EL BOTON "LIMPIAR TODAS"
+
+// LIMPIAR TODAS
 btnTodas.addEventListener("click", () => {
     tareas = [];
     actualizarLista();
