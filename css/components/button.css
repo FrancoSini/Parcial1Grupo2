@@ -16,7 +16,7 @@ button.btn-agregar:hover {
 }
 
 
-.lista-tareas li button {     
+.lista-tareas li button:nth-of-type(1){     
   background: #28a745;
   color: #fff;
   border: none;
@@ -25,19 +25,17 @@ button.btn-agregar:hover {
   cursor: pointer;
   font-size: 20px;
 }
-
-/* botones de limpiar ultima, limpiar completadas y limpiar todas*/
-
-button.btn-limpiar-ultima{
-  background: #ffc107;
-  color: #333;
+.lista-tareas li button:nth-of-type(2){     
+  background: hsl(13, 88%, 54%);
+  color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 50px; 
   cursor: pointer;
-  font-size: 16px;
-  margin-right: 10px; 
+  font-size: 20px;
 }
+
+/* botones de impiar completadas y limpiar todas*/
 
 
 button.btn-limpiar-completadas {
@@ -71,9 +69,6 @@ button.btn-limpiar-completadas:hover {
   background: #138496;
 }
 
-button.btn-limpiar-ultima:hover {
-  background: #e0a800;
-}
 
 footer button {
   border-radius: 30px;   
