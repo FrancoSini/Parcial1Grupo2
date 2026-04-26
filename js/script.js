@@ -7,7 +7,6 @@ const total = document.querySelector("#total");
 const pendientes = document.querySelector("#pendientes");
 const completadas = document.querySelector("#completadas");
 
-const btnUltima = document.querySelector(".btn-limpiar-ultima");
 const btnCompletadas = document.querySelector(".btn-limpiar-completadas");
 const btnTodas = document.querySelector(".btn-limpiar-todas");
 
